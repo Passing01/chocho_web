@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chocho — Plus proche, plus rapide.</title>
+<meta name="description" content="Chocho, la livraison rapide et de confiance. Téléchargez l'application Android dès maintenant.">
+<meta name="theme-color" content="#FFD109">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%23FFD109'/><path d='M14 24h30M10 33h34M18 42h26' stroke='%230F172A' stroke-width='6' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--y:#FFD109;--n:#0F172A;--b:#2563EB;--w:#FBFAFC;--g:#384155}
+*{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--w);color:var(--n);overflow-x:hidden}
+h1,h2,h3,.logo{font-family:'Space Grotesk','Plus Jakarta Sans',sans-serif;letter-spacing:-.03em}
+a{color:inherit;text-decoration:none}.wrap{max-width:1160px;margin:auto;padding:0 22px}
+nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);width:min(1100px,94%);z-index:50;display:flex;justify-content:space-between;align-items:center;padding:10px 14px 10px 20px;border-radius:999px;background:rgba(15,23,42,.88);backdrop-filter:blur(14px);color:#fff}
+.logo{display:flex;align-items:center;gap:8px;font-size:26px;font-weight:700}.logo svg{width:30px;height:24px}
+nav ul{display:flex;gap:26px;list-style:none;font-size:14px;font-weight:600;opacity:.85}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;font-weight:800;font-size:15px;border:0;cursor:pointer;transition:.25s}
+.btn.y{background:var(--y);color:var(--n);box-shadow:0 10px 30px -8px rgba(255,209,9,.7)}.btn.y:hover{transform:translateY(-3px) scale(1.03)}
+.btn.d{background:var(--n);color:#fff}.btn.o{border:2px solid rgba(255,255,255,.3);color:#fff;background:transparent}.btn.o:hover{background:rgba(255,255,255,.1)}
+.hero{position:relative;background:var(--y);padding:150px 0 110px;overflow:hidden}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(2px)}
+.hero:before{width:620px;height:620px;right:-160px;top:-120px;background:radial-gradient(circle,#fff6b8,transparent 70%)}
+.hero:after{width:420px;height:420px;left:-140px;bottom:-200px;background:var(--n);opacity:.08}
+.speed{position:absolute;inset:0;pointer-events:none}.speed i{position:absolute;height:6px;border-radius:9px;background:var(--n);opacity:.09;animation:dash 6s linear infinite}
+@keyframes dash{from{transform:translateX(-30vw)}to{transform:translateX(130vw)}}
+.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;position:relative}
+.pill{display:inline-flex;gap:8px;align-items:center;background:var(--n);color:var(--y);padding:8px 16px;border-radius:99px;font-size:13px;font-weight:800;margin-bottom:22px}
+.pill b{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(34,197,94,0)}0%{box-shadow:0 0 0 0 rgba(34,197,94,.7)}}
+h1{font-size:clamp(46px,7.5vw,96px);line-height:.95;font-weight:700}h1 span{background:var(--n);color:var(--y);padding:0 .15em;border-radius:.15em;display:inline-block;transform:rotate(-2deg)}
+.lead{font-size:19px;line-height:1.6;margin:26px 0 34px;max-width:520px;color:#1e2638}
+.ctas{display:flex;gap:14px;flex-wrap:wrap}
+.phone{width:290px;height:580px;margin:auto;background:var(--n);border-radius:46px;padding:12px;box-shadow:0 50px 90px -20px rgba(15,23,42,.6);transform:rotate(6deg);animation:float 5s ease-in-out infinite;position:relative}
+@keyframes float{50%{transform:rotate(3deg) translateY(-18px)}}
+.screen{height:100%;border-radius:36px;background:linear-gradient(180deg,#fff,#eef2ff);overflow:hidden;padding:22px 16px;position:relative}
+.screen .top{display:flex;justify-content:space-between;font-weight:800;font-size:13px}
+.map{height:210px;margin:14px 0;border-radius:22px;background:#dbe5ff;position:relative;overflow:hidden;background-image:linear-gradient(#fff9 2px,transparent 2px),linear-gradient(90deg,#fff9 2px,transparent 2px);background-size:34px 34px}
+.map:after{content:"";position:absolute;left:18%;top:70%;width:62%;height:44%;border:4px dashed var(--b);border-bottom:0;border-left:0;border-radius:0 40px 0 0;transform:translateY(-100%)}
+.dot{position:absolute;width:22px;height:22px;border-radius:50%;background:var(--y);border:4px solid var(--n);right:18%;top:26%;animation:pulse 1.6s infinite}
+.card{background:#fff;border-radius:18px;padding:14px;box-shadow:0 8px 24px -10px #0003;margin-bottom:10px;display:flex;gap:12px;align-items:center;font-size:13px}
+.card .av{width:40px;height:40px;border-radius:12px;background:var(--y);display:grid;place-items:center;font-weight:800}
+.card small{display:block;color:#64748b}.bar{height:6px;background:#e2e8f0;border-radius:9px;margin-top:6px;overflow:hidden}.bar i{display:block;height:100%;width:70%;background:var(--b);border-radius:9px;animation:grow 3s ease-in-out infinite alternate}
+@keyframes grow{from{width:25%}to{width:92%}}
+.chip{position:absolute;background:#fff;border-radius:16px;padding:10px 14px;font-weight:800;font-size:13px;box-shadow:0 14px 30px -10px #0005;animation:float 6s ease-in-out infinite}
+.marq{background:var(--n);color:var(--y);padding:18px 0;overflow:hidden;white-space:nowrap;font-family:'Space Grotesk';font-weight:700;font-size:26px}
+.marq div{display:inline-block;animation:m 25s linear infinite}@keyframes m{to{transform:translateX(-50%)}}
+section{padding:100px 0}h2{font-size:clamp(34px,5vw,60px);line-height:1;margin-bottom:16px}.sub{color:#475569;font-size:18px;max-width:560px;line-height:1.6}
+.feat{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:50px}
+.f{background:#fff;border-radius:28px;padding:30px 24px;border:1px solid #e8ebf3;transition:.3s}.f:hover{transform:translateY(-8px);background:var(--n);color:#fff;box-shadow:0 30px 50px -20px #0f172a88}
+.f:hover p{color:#cbd5e1}.f .ic{width:56px;height:56px;border-radius:18px;background:var(--y);display:grid;place-items:center;font-size:26px;margin-bottom:20px}.f h3{font-size:22px;margin-bottom:8px}.f p{color:#64748b;line-height:1.55;font-size:15px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:50px;counter-reset:s}
+.st{position:relative;padding:34px;border-radius:28px;background:var(--y)}.st:before{counter-increment:s;content:"0" counter(s);font-family:'Space Grotesk';font-size:64px;font-weight:700;opacity:.2;position:absolute;right:22px;top:6px}
+.st h3{font-size:24px;margin-bottom:8px}.st p{line-height:1.55}
+.partner{background:var(--n);color:#fff;border-radius:44px;display:grid;grid-template-columns:1fr 1fr;gap:30px;padding:60px;align-items:center;margin:0 auto}
+.partner p{color:#cbd5e1;line-height:1.7;margin:16px 0 24px}.partner ul{list-style:none;display:grid;gap:12px;font-weight:600}.partner li:before{content:"✓";background:var(--y);color:var(--n);border-radius:50%;width:24px;height:24px;display:inline-grid;place-items:center;margin-right:12px;font-size:13px;font-weight:800}
+.vest{width:250px;height:300px;margin:auto;background:var(--y);color:var(--n);border-radius:30px 30px 50px 50px;position:relative;padding:26px;text-align:center;box-shadow:0 40px 80px -20px #000a;transform:rotate(-4deg)}
+.vest:before,.vest:after{content:"";position:absolute;left:0;right:0;height:26px;background:#cbd0d8}.vest:before{top:150px}.vest:after{top:200px}
+.vest .qr{width:76px;height:76px;margin:12px auto 0;background:#fff;border-radius:10px;display:grid;place-items:center;font-size:44px}
+.vest .logo{justify-content:center;font-size:24px}
+.dl{background:linear-gradient(135deg,var(--b),#1e3a8a);color:#fff;border-radius:48px;padding:70px 60px;display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:center;position:relative;overflow:hidden}
+.dl:before{content:"";position:absolute;width:400px;height:400px;border-radius:50%;background:var(--y);opacity:.15;right:-100px;top:-150px}
+.dl .sub{color:#dbeafe}.meta{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}.meta span{background:#fff2;border-radius:99px;padding:8px 16px;font-size:13px;font-weight:600}
+.note{font-size:13px;color:#bfdbfe;margin-top:14px;min-height:20px}
+.qrbox{background:#fff;color:var(--n);border-radius:32px;padding:28px;text-align:center;position:relative;z-index:1;box-shadow:0 30px 60px -20px #0008}
+#qr{display:grid;place-items:center;margin:0 auto 14px;min-height:240px}#qr img,#qr canvas{border-radius:14px;max-width:100%}
+.qrbox p{font-size:14px;color:#64748b;margin-bottom:14px}.qrbox .btn{padding:11px 20px;font-size:14px}
+details{background:#fff;border:1px solid #e8ebf3;border-radius:20px;padding:20px 24px;margin-top:12px}summary{font-weight:800;cursor:pointer;font-size:17px}details p{margin-top:12px;color:#475569;line-height:1.6}
+footer{background:var(--n);color:#94a3b8;padding:50px 0;margin-top:100px}footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;align-items:center}footer .logo{color:#fff}
+.rv{opacity:0;transform:translateY(40px);transition:.8s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;transform:none}
+@media(max-width:900px){nav ul{display:none}.grid,.partner,.dl{grid-template-columns:1fr;padding:34px}.feat{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}.phone{transform:none;animation:none;margin-top:40px}.chip{display:none}}
+@media(max-width:520px){.feat{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="lg" viewBox="0 0 30 24"><path d="M6 4h22M2 12h24M9 20h19" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/></symbol></svg>
+
+<nav><a href="#" class="logo"><svg style="color:var(--y)"><use href="#lg"/></svg>Chocho</a>
+<ul><li><a href="#atouts">Atouts</a></li><li><a href="#comment">Comment ça marche</a></li><li><a href="#livreurs">Livreurs</a></li><li><a href="#faq">FAQ</a></li></ul>
+<a href="#telecharger" class="btn y" style="padding:10px 20px">Télécharger</a></nav>
+
+<header class="hero"><div class="speed"><i style="top:18%;width:260px"></i><i style="top:38%;width:180px;animation-delay:-2s"></i><i style="top:62%;width:320px;animation-delay:-4s"></i><i style="top:82%;width:200px;animation-delay:-1s"></i></div>
+<div class="wrap grid"><div>
+<div class="pill"><b></b> Application Android disponible</div>
+<h1>Plus proche,<br><span>plus rapide.</span></h1>
+<p class="lead">Chocho livre ce que vous aimez, là où vous êtes, par des livreurs partenaires identifiés et de confiance.</p>
+<div class="ctas"><a href="#telecharger" class="btn d">⬇ Télécharger l'app</a><a href="#livreurs" class="btn" style="background:#fff8">Devenir livreur →</a></div></div>
+<div style="position:relative"><div class="chip" style="left:-10px;top:60px">⚡ Livré en 15 min</div><div class="chip" style="right:-6px;bottom:90px;animation-delay:-3s">✅ Livreur vérifié</div>
+<div class="phone"><div class="screen"><div class="top"><span>Chocho</span><span>9:41</span></div><div class="map"><div class="dot"></div></div>
+<div class="card"><div class="av">GT</div><div><b>Gaël est en route</b><small>Livreur partenaire</small><div class="bar"><i></i></div></div></div>
+<div class="card"><div class="av" style="background:#dbeafe">📦</div><div><b>Commande #2841</b><small>Arrivée dans 6 min</small></div></div></div></div></div>
+</div></header>
+
+<div class="marq"><div>RAPIDITÉ ✦ CONFIANCE ✦ PROXIMITÉ ✦ INNOVATION ✦ RAPIDITÉ ✦ CONFIANCE ✦ PROXIMITÉ ✦ INNOVATION ✦ RAPIDITÉ ✦ CONFIANCE ✦ PROXIMITÉ ✦ INNOVATION ✦ RAPIDITÉ ✦ CONFIANCE ✦ PROXIMITÉ ✦ INNOVATION ✦ </div></div>
+
+<section id="atouts"><div class="wrap"><div class="rv"><h2>Pensé pour<br>aller vite.</h2><p class="sub">Une expérience simple, transparente et locale.</p></div>
+<div class="feat">
+<div class="f rv"><div class="ic">⚡</div><h3>Rapidité</h3><p>Des livraisons optimisées pour vous servir au plus vite.</p></div>
+<div class="f rv"><div class="ic">🛡️</div><h3>Confiance</h3><p>Livreurs identifiés, badge officiel et QR code de vérification.</p></div>
+<div class="f rv"><div class="ic">📍</div><h3>Proximité</h3><p>Des partenaires près de chez vous, pour une livraison plus courte.</p></div>
+<div class="f rv"><div class="ic">💡</div><h3>Innovation</h3><p>Suivi en temps réel et technologie pensée pour l'Afrique de l'Ouest.</p></div></div></div></section>
+
+<section style="background:#fff"><div class="wrap" id="comment"><div class="rv"><h2>3 étapes.<br>C'est tout.</h2></div>
+<div class="steps"><div class="st rv"><h3>Choisissez</h3><p>Parcourez les commerces autour de vous et composez votre commande.</p></div>
+<div class="st rv" style="background:var(--n);color:#fff"><h3>Suivez</h3><p>Un livreur partenaire prend en charge votre colis, suivez-le en direct.</p></div>
+<div class="st rv" style="background:var(--b);color:#fff"><h3>Vérifiez & recevez</h3><p>Scannez le QR code du livreur pour confirmer son identité.</p></div></div></div></section>
+
+<section id="livreurs"><div class="wrap"><div class="partner rv"><div><h2>Livreur partenaire,<br><span style="color:var(--y)">fier de sa tenue.</span></h2>
+<p>Gilet haute visibilité, béret brodé, badge unique et QR code : nos livreurs sont facilement identifiables et fiers de représenter Chocho.</p>
+<ul><li>Sécurité : haute visibilité sur la route</li><li>Confiance : identification claire</li><li>Technologie : QR code de transparence</li></ul></div>
+<div class="vest"><div class="logo"><svg style="width:26px;height:20px"><use href="#lg"/></svg>Chocho</div><b style="font-size:12px;letter-spacing:.1em;display:block;margin-top:34px">LIVREUR PARTENAIRE</b><div class="qr">▦</div></div></div></div></section>
+
+<section id="telecharger" style="padding-top:0"><div class="wrap"><div class="dl rv"><div>
+<h2>Installez Chocho<br>maintenant.</h2><p class="sub">L'application arrive bientôt sur le Play Store. En attendant, installez-la directement en quelques secondes.</p>
+<div class="meta"><span id="v">Version —</span><span id="d">Mise à jour —</span><span id="s">Taille —</span></div>
+<a id="dlbtn" class="btn y" href="app/chocho.apk" download>⬇ Télécharger l'APK</a><div class="note" id="note"></div></div>
+<div class="qrbox"><div id="qr"></div><p>Scannez pour télécharger Chocho sur votre téléphone</p><button class="btn d" id="qrdl">Enregistrer le QR code</button></div></div></div></section>
+
+<section style="padding-top:0"><div class="wrap" id="faq" style="max-width:760px"><h2 class="rv">Installer l'APK</h2>
+<details open><summary>Comment installer l'application ?</summary><p>Téléchargez le fichier, ouvrez-le, puis autorisez l'installation depuis cette source si Android le demande (Paramètres → Sécurité → Sources inconnues).</p></details>
+<details><summary>Est-ce sûr ?</summary><p>Le fichier est publié uniquement depuis ce site officiel Chocho SARL. Ne téléchargez jamais l'application depuis un autre lien.</p></details>
+<details><summary>Comment recevoir les mises à jour ?</summary><p>Revenez sur cette page : la dernière version est toujours disponible ici. Réinstallez simplement par-dessus l'ancienne.</p></details>
+<details><summary>Et sur iPhone ?</summary><p>La version iOS n'est pas encore disponible. Restez connectés !</p></details></div></section>
+
+<footer><div class="wrap"><a class="logo"><svg style="color:var(--y)"><use href="#lg"/></svg>Chocho</a><span>Plus proche, plus rapide. © <span id="yr"></span> Chocho SARL</span></div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+// Animations d'apparition
+const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+// QR code unique -> redirige vers la section de téléchargement du site
+const target=location.origin+'/#telecharger';
+try{new QRCode(document.getElementById('qr'),{text:target,width:240,height:240,colorDark:'#0F172A',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.H})}catch(e){}
+document.getElementById('qrdl').onclick=()=>{const c=document.querySelector('#qr canvas');if(!c)return;const a=document.createElement('a');a.download='chocho-qr.png';a.href=c.toDataURL('image/png');a.click()};
+// Infos APK dynamiques depuis version.json (mis à jour à chaque nouvelle version)
+fetch('version.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(async j=>{
+ const set=(i,t)=>document.getElementById(i).textContent=t;
+ set('v','Version '+j.version);
+ set('d','Mise à jour : '+new Date(j.date).toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}));
+ set('s','Taille : '+(j.size?(j.size/1048576).toFixed(1)+' Mo':'—'));
+ const b=document.getElementById('dlbtn');b.href=j.url;
+ if(/iPhone|iPad/i.test(navigator.userAgent))set('note','Version iOS bientôt disponible.');
+ if(j.notes)set('note',j.notes);
+ if(!j.size)set('note','L\'APK sera disponible très bientôt.');
+}).catch(()=>{});
+</script>
+</body>
+</html>
