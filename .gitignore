@@ -1,0 +1,3 @@
+# Android APK files (too large for GitHub repo, host on GitHub Releases instead)
+*.apk
+app/*.apk

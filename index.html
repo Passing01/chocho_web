@@ -117,7 +117,7 @@ footer{background:var(--n);color:#94a3b8;padding:50px 0;margin-top:100px}footer 
 <section id="telecharger" style="padding-top:0"><div class="wrap"><div class="dl rv"><div>
 <h2>Installez Chocho<br>maintenant.</h2><p class="sub">L'application arrive bientôt sur le Play Store. En attendant, installez-la directement en quelques secondes.</p>
 <div class="meta"><span id="v">Version —</span><span id="d">Mise à jour —</span><span id="s">Taille —</span></div>
-<a id="dlbtn" class="btn y" href="app/chocho.apk" download>⬇ Télécharger l'APK</a><div class="note" id="note"></div></div>
+<a id="dlbtn" class="btn y" href="app/Chocho.apk" download>⬇ Télécharger l'APK</a><div class="note" id="note"></div></div>
 <div class="qrbox"><div id="qr"></div><p>Scannez pour télécharger Chocho sur votre téléphone</p><button class="btn d" id="qrdl">Enregistrer le QR code</button></div></div></div></section>
 
 <section style="padding-top:0"><div class="wrap" id="faq" style="max-width:760px"><h2 class="rv">Installer l'APK</h2>
@@ -138,17 +138,47 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 const target=location.origin+'/#telecharger';
 try{new QRCode(document.getElementById('qr'),{text:target,width:240,height:240,colorDark:'#0F172A',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.H})}catch(e){}
 document.getElementById('qrdl').onclick=()=>{const c=document.querySelector('#qr canvas');if(!c)return;const a=document.createElement('a');a.download='chocho-qr.png';a.href=c.toDataURL('image/png');a.click()};
-// Infos APK dynamiques depuis version.json (mis à jour à chaque nouvelle version)
-fetch('version.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(async j=>{
- const set=(i,t)=>document.getElementById(i).textContent=t;
- set('v','Version '+j.version);
- set('d','Mise à jour : '+new Date(j.date).toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}));
- set('s','Taille : '+(j.size?(j.size/1048576).toFixed(1)+' Mo':'—'));
- const b=document.getElementById('dlbtn');b.href=j.url;
- if(/iPhone|iPad/i.test(navigator.userAgent))set('note','Version iOS bientôt disponible.');
- if(j.notes)set('note',j.notes);
- if(!j.size)set('note','L\'APK sera disponible très bientôt.');
-}).catch(()=>{});
+// Infos APK dynamiques : détection automatique depuis la dernière GitHub Release (avec repli sur version.json)
+async function loadReleaseInfo() {
+  const set = (i, t) => { const el = document.getElementById(i); if (el) el.textContent = t; };
+  let info = null;
+
+  try {
+    const res = await fetch('https://api.github.com/repos/Passing01/chocho_web/releases/latest');
+    if (res.ok) {
+      const rel = await res.json();
+      const apkAsset = (rel.assets || []).find(a => a.name.toLowerCase().endsWith('.apk'));
+      if (apkAsset) {
+        info = {
+          version: rel.tag_name ? rel.tag_name.replace(/^v/i, '') : rel.name,
+          date: rel.published_at || rel.created_at,
+          size: apkAsset.size,
+          url: apkAsset.browser_download_url,
+          notes: rel.body || ''
+        };
+      }
+    }
+  } catch (e) {}
+
+  if (!info) {
+    try {
+      const res = await fetch('version.json?t=' + Date.now(), { cache: 'no-store' });
+      if (res.ok) info = await res.json();
+    } catch (e) {}
+  }
+
+  if (info) {
+    set('v', 'Version ' + (info.version || '—'));
+    set('d', 'Mise à jour : ' + (info.date ? new Date(info.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }) : '—'));
+    set('s', 'Taille : ' + (info.size ? (info.size / 1048576).toFixed(1) + ' Mo' : '—'));
+    const b = document.getElementById('dlbtn');
+    if (b && info.url) b.href = info.url;
+    if (/iPhone|iPad/i.test(navigator.userAgent)) set('note', 'Version iOS bientôt disponible.');
+    else if (info.notes) set('note', info.notes);
+    else if (!info.size) set('note', 'L\'APK sera disponible très bientôt.');
+  }
+}
+loadReleaseInfo();
 </script>
 </body>
 </html>
